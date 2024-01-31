@@ -7,10 +7,10 @@ const typeDefs = gql`
     name: String
     genre: String
     # Một quyển sách có 1 tác giả
-    author:Author
+    author: Author
   }
 
-  type Author{
+  type Author {
     # Khi query đến author sẽ bắt buộc trả ra ID chứ không null
     id: ID!
     name: String
@@ -22,8 +22,15 @@ const typeDefs = gql`
   type Query {
     getListBooks: [Book]
     getListAuthors: [Author]
-    getABookWithId (id: ID!):Book
-    getAnAuthorWithId (id: ID!): Author
+    getABookWithId(id: ID!): Book
+    getAnAuthorWithId(id: ID!): Author
+  }
+
+  type Mutation {
+    # Method name: input type : return type
+    createAuthor(id: ID!, name: String, age: Int): Author
+
+    createBook(id: ID!, name: String, genre: String, authorId: ID!): Book
   }
 `;
 
